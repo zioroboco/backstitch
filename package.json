@@ -1,0 +1,14 @@
+{
+  "name": "backstitch",
+  "version": "0.0.0",
+  "author": "Louis Quinnell <zioroboco@gmail.com>",
+  "repository": "https://github.com/zioroboco/backstitch.git",
+  "license": "ISC",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {}
+}
