@@ -1,0 +1,10 @@
+{
+  "name": "@backstitch/example",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {},
+  "dependencies": {
+    "@backstitch/core": "*"
+  },
+  "devDependencies": {}
+}

@@ -8,7 +8,12 @@
   "workspaces": [
     "packages/*"
   ],
-  "scripts": {},
-  "dependencies": {},
-  "devDependencies": {}
+  "scripts": {
+    "core": "yarn workspace @backstitch/core",
+    "example": "yarn workspace @backstitch/example",
+    "compile": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^3.2.4"
+  }
 }
