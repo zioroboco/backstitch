@@ -5,7 +5,7 @@ const { name } = require("./package.json")
 
 const config: Configuration = {
   mode: "development",
-  devtool: "eval-source-map",
+  devtool: "inline-source-map",
   module: {
     rules: [
       {
