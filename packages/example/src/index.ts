@@ -8,39 +8,86 @@ root.id = "root"
 
 document.body.appendChild(root)
 
-const mutationCallback: MutationCallback = mutations => {
-  mutations.forEach(mutation => {
-    console.log(mutation)
-  })
-}
+const ATTRIBUTE = "data-props"
 
-const makeCustomElement = (component: string) =>
+// @ts-ignore
+const getData = (root: ShadowRoot) => JSON.parse(root.getAttribute(ATTRIBUTE))
+
+const makeCustomElement = (component: any) =>
   class extends HTMLElement {
-    node: HTMLDivElement
+    node: HTMLSpanElement
+    root: ShadowRoot | null
     ref: any
-    component: string
-    observer: MutationObserver
+    component: any
+    mutationObserver: MutationObserver
+    mutationCallback: MutationCallback
     constructor() {
       super()
-      this.node = document.createElement("div")
+      this.node = document.createElement("span")
+      this.root = null
       this.ref = undefined
       this.component = component
-      this.observer = new MutationObserver(mutationCallback)
-      this.observer.observe(this.node, { attributes: true })
+      this.mutationCallback = mutations =>
+        mutations.forEach(m => {
+          if (m.attributeName !== ATTRIBUTE) return
+          this.ref.update(getData(this.root!))
+        })
+      this.mutationObserver = new MutationObserver(this.mutationCallback)
     }
     connectedCallback() {
       this.attachShadow({ mode: "open" }).appendChild(this.node)
+      // @ts-ignore
+      this.root = this.node.parentNode.host as ShadowRoot
       ReactDom.render(
         React.createElement(this.component, {
-          ref: (r: any) => (this.ref = r)
+          root: this.root,
+          ref: r => (this.ref = r)
         }),
         this.node
       )
+      this.mutationObserver.observe(this.root, {
+        attributes: true
+      })
     }
   }
 
-const CustomElement = makeCustomElement("span")
+type HostComponentProps = { ref: any; root: ShadowRoot }
+const makeHostComponent = (component: any) =>
+  class extends React.Component<HostComponentProps, object> {
+    update: (data: object) => void
+    constructor(props: any) {
+      super(props)
+      this.state = getData(props.root)
+      this.update = (data: object) => {
+        this.setState(data)
+      }
+    }
+    render() {
+      return React.createElement(component, this.state)
+    }
+  }
 
-customElements.define("x-element", CustomElement)
+const props = (props: object) => ({ [ATTRIBUTE]: JSON.stringify(props) })
 
-ReactDom.render(React.createElement("x-element"), root)
+const use = (entries: [{ component: any; as: string }]) =>
+  entries.forEach(({ component, as: element }) =>
+    customElements.define(
+      element,
+      makeCustomElement(makeHostComponent(component))
+    )
+  )
+
+const backstitch = { use, props }
+
+const CustomButton = (props: { label: string }) =>
+  React.createElement("button", { style: { "font-size": "2em" } }, props.label)
+
+backstitch.use([{ component: CustomButton, as: "x-button" }])
+
+ReactDom.render(
+  React.createElement("x-button", {
+    onClick: () => console.log("woot!"),
+    ...backstitch.props({ label: "doop!" })
+  }),
+  root
+)
