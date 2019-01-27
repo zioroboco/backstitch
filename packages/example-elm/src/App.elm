@@ -3,6 +3,7 @@ module Main exposing (Model, Msg(..), init, main, subscriptions, timeToString, u
 import Browser
 import Html exposing (..)
 import Html.Attributes exposing (attribute)
+import Html.Events exposing (onClick)
 import Json.Encode exposing (encode, object, string)
 import Task
 import Time
@@ -28,12 +29,13 @@ main =
 type alias Model =
     { zone : Time.Zone
     , time : Time.Posix
+    , pretty : Bool
     }
 
 
 init : () -> ( Model, Cmd Msg )
 init _ =
-    ( Model Time.utc (Time.millisToPosix 0)
+    ( Model Time.utc (Time.millisToPosix 0) False
     , Task.perform AdjustTimeZone Time.here
     )
 
@@ -45,11 +47,17 @@ init _ =
 type Msg
     = Tick Time.Posix
     | AdjustTimeZone Time.Zone
+    | Toggle
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        Toggle ->
+            ( { model | pretty = not model.pretty }
+            , Cmd.none
+            )
+
         Tick newTime ->
             ( { model | time = newTime }
             , Cmd.none
@@ -87,7 +95,18 @@ view model =
             timeToString (Time.toSecond model.zone model.time)
 
         props =
-            object [ ( "size", string "2em" ) ]
+            object
+                [ ( "size", string "2em" )
+                , ( "color"
+                  , string
+                        (if model.pretty then
+                            "red"
+
+                         else
+                            "black"
+                        )
+                  )
+                ]
     in
     case Time.posixToMillis model.time of
         0 ->
@@ -96,7 +115,9 @@ view model =
         time ->
             div []
                 [ Html.node "x-button"
-                    [ attribute "data-props" (encode 0 props) ]
+                    [ attribute "data-props" (encode 0 props)
+                    , onClick Toggle
+                    ]
                     [ Html.text (hour ++ ":" ++ minute ++ ":" ++ second)
                     ]
                 ]

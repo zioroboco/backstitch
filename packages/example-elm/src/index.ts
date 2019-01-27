@@ -6,10 +6,14 @@ root.id = "root"
 
 document.body.appendChild(root)
 
-const CustomButton = (props: { children: React.ReactNode; size: string }) =>
+const CustomButton = (props: {
+  children: React.ReactNode
+  size: string
+  color: string
+}) =>
   React.createElement(
     "button",
-    { style: { fontSize: props.size } },
+    { style: { fontSize: props.size, color: props.color } },
     props.children
   )
 
