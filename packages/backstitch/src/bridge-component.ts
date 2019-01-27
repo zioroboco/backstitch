@@ -7,12 +7,7 @@ export type BridgeComponentClass = React.ComponentClass<
   BridgeComponentState
 >
 
-export const makeBridgeComponent = (
-  targetComponent:
-    | string
-    | React.FunctionComponent<object>
-    | React.ComponentClass<object, any>
-) =>
+export const makeBridgeComponent = (targetComponent: React.ReactNode) =>
   class BridgeComponent extends React.Component<
     BridgeComponentProps,
     BridgeComponentState
@@ -26,6 +21,11 @@ export const makeBridgeComponent = (
       }
     }
     render() {
-      return React.createElement(targetComponent, this.state)
+      return React.createElement(
+        // @ts-ignore
+        targetComponent,
+        this.state,
+        React.createElement("slot")
+      )
     }
   }

@@ -7,10 +7,7 @@ export const props = (props: object) => ({
 
 export const use = (
   entries: {
-    component:
-      | string
-      | React.FunctionComponent<any>
-      | React.ComponentClass<any, any>
+    component: React.ReactNode
     as: string
   }[]
 ) =>

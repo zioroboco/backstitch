@@ -7,15 +7,23 @@ root.id = "root"
 
 document.body.appendChild(root)
 
-const CustomButton = (props: { label: string }) =>
-  React.createElement("button", { style: { fontSize: "2em" } }, props.label)
+const CustomButton = (props: { children: React.ReactNode; size: string }) =>
+  React.createElement(
+    "button",
+    { style: { fontSize: props.size } },
+    props.children
+  )
 
 backstitch.use([{ component: CustomButton, as: "x-button" }])
 
 ReactDom.render(
-  React.createElement("x-button", {
-    onClick: () => console.log("woot!"),
-    ...backstitch.props({ label: "doop!" })
-  }),
+  React.createElement(
+    "x-button",
+    {
+      onClick: () => console.log("woot!"),
+      ...backstitch.props({ size: "2em" })
+    },
+    "doop!"
+  ),
   root
 )
