@@ -1,16 +1,14 @@
 {
-  "name": "backstitch",
-  "version": "0.0.0",
-  "author": "Louis Quinnell <zioroboco@gmail.com>",
-  "repository": "https://github.com/zioroboco/backstitch.git",
-  "license": "ISC",
   "private": true,
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "core": "yarn workspace @backstitch/core",
-    "example": "yarn workspace @backstitch/example",
+    "start": "yarn example start",
+    "build": "yarn backstitch build",
+    "postinstall": "yarn backstitch build",
+    "backstitch": "yarn workspace backstitch",
+    "example": "yarn workspace example",
     "compile": "tsc --noEmit"
   },
   "devDependencies": {

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "jsx": "react",
     "lib": ["dom", "es2015"],
+    "moduleResolution": "node",
     "strict": true
-  },
-  "exclude": ["node_modules"]
+  }
 }

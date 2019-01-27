@@ -1,13 +1,12 @@
 {
-  "name": "@backstitch/example",
+  "name": "example",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "webpack-dev-server"
   },
   "dependencies": {
-    "@backstitch/core": "*",
-    "@webcomponents/webcomponentsjs": "^2.2.4",
+    "backstitch": "*",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
   },
@@ -15,7 +14,7 @@
     "@babel/core": "^7.2.2",
     "@babel/preset-typescript": "^7.1.0",
     "@types/html-webpack-plugin": "^3.2.0",
-    "@types/react": "^16.7.20",
+    "@types/react": "^16.7.21",
     "@types/react-dom": "^16.0.11",
     "babel-loader": "^8.0.5",
     "html-webpack-plugin": "^3.2.0",
