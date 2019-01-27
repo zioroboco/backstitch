@@ -5,13 +5,8 @@ import { BridgeComponentClass } from "./bridge-component"
 
 export const PROPS_ATTRIBUTE = "data-props"
 
-const assertExists = <T>(argument: T | null) => {
-  if (!argument) throw new Error(`Argument returned ${argument}`)
-  return argument
-}
-
-const getData = (root: Element | null) => {
-  const attributeData = assertExists(root).getAttribute(PROPS_ATTRIBUTE)
+const getData = (root: Element) => {
+  const attributeData = root.getAttribute(PROPS_ATTRIBUTE)
   if (!attributeData) return
   return JSON.parse(attributeData)
 }
@@ -32,7 +27,7 @@ export const makeCustomElement = (bridgeComponent: BridgeComponentClass) =>
       this.mutationObserver = new MutationObserver(mutations =>
         mutations.forEach(m => {
           if (m.attributeName !== PROPS_ATTRIBUTE) return
-          this.ref.update(getData(this.customElement))
+          this.ref.update(getData(this.customElement!))
         })
       )
     }
