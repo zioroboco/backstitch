@@ -14,3 +14,9 @@ const CustomButton = (props: { children: React.ReactNode; size: string }) =>
   )
 
 backstitch.use([{ component: CustomButton, as: "x-button" }])
+
+const { Elm } = require("./App.elm")
+
+Elm.Main.init({
+  node: document.getElementById("root")
+})
