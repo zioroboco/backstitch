@@ -11,8 +11,9 @@ const assertExists = <T>(argument: T | null) => {
 }
 
 const getData = (root: Element | null) => {
-  const serialisedProps = assertExists(root).getAttribute(PROPS_ATTRIBUTE)
-  return JSON.parse(assertExists(serialisedProps))
+  const attributeData = assertExists(root).getAttribute(PROPS_ATTRIBUTE)
+  if (!attributeData) return
+  return JSON.parse(attributeData)
 }
 
 export const makeCustomElement = (bridgeComponent: BridgeComponentClass) =>
