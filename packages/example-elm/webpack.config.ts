@@ -6,7 +6,7 @@ const { name } = require("./package.json")
 const config: Configuration = {
   ...makeConfig(name, [
     {
-      test: /.elm/,
+      test: /\.elm/,
       loader: "elm-webpack-loader"
     }
   ])
