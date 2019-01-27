@@ -1,0 +1,17 @@
+{
+  "name": "backstitch-example-elm",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "webpack-dev-server"
+  },
+  "dependencies": {
+    "backstitch": "*",
+    "react": "^16.7.0"
+  },
+  "devDependencies": {
+    "backstitch-example": "*",
+    "elm": "^0.19.0-bugfix6",
+    "elm-webpack-loader": "^5.0.0"
+  }
+}

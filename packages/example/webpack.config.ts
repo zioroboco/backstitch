@@ -1,11 +1,14 @@
-import { Configuration } from "webpack"
+import { Configuration, RuleSetRule } from "webpack"
 import * as HtmlWebpackPlugin from "html-webpack-plugin"
 import TsConfigPathsPlugin from "tsconfig-paths-webpack-plugin"
 import { join } from "path"
 
 const { name } = require("./package.json")
 
-const config: Configuration = {
+export const makeConfig: (
+  title: string,
+  rules?: RuleSetRule[]
+) => Configuration = (title, rules = []) => ({
   mode: "development",
   devtool: "inline-source-map",
   module: {
@@ -16,7 +19,8 @@ const config: Configuration = {
           loader: "babel-loader",
           options: { presets: ["@babel/preset-typescript"] }
         }
-      }
+      },
+      ...rules
     ]
   },
   resolve: {
@@ -27,7 +31,7 @@ const config: Configuration = {
     ],
     extensions: [".json", ".js", ".ts"]
   },
-  plugins: [new HtmlWebpackPlugin({ title: name })]
-}
+  plugins: [new HtmlWebpackPlugin({ title })]
+})
 
-export default config
+export default makeConfig(name)

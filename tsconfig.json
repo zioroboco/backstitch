@@ -6,6 +6,7 @@
     "strict": true,
     "baseUrl": ".",
     "paths": {
+      "backstitch-*": ["./packages/*/src"],
       "backstitch": ["./packages/backstitch/src"]
     }
   }

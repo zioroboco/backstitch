@@ -5,10 +5,12 @@
   ],
   "scripts": {
     "start": "yarn example start",
+    "start-elm": "yarn example start",
     "build": "yarn backstitch build",
     "postinstall": "yarn backstitch build",
     "backstitch": "yarn workspace backstitch",
-    "example": "yarn workspace example",
+    "example": "yarn workspace backstitch-example",
+    "example-elm": "yarn workspace backstitch-example-elm",
     "compile": "tsc --noEmit"
   },
   "devDependencies": {
