@@ -3,6 +3,10 @@
     "jsx": "react",
     "lib": ["dom", "es2015"],
     "moduleResolution": "node",
-    "strict": true
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "backstitch": ["./packages/backstitch/src"]
+    }
   }
 }

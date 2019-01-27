@@ -1,5 +1,7 @@
 import { Configuration } from "webpack"
 import * as HtmlWebpackPlugin from "html-webpack-plugin"
+import TsConfigPathsPlugin from "tsconfig-paths-webpack-plugin"
+import { join } from "path"
 
 const { name } = require("./package.json")
 
@@ -17,7 +19,14 @@ const config: Configuration = {
       }
     ]
   },
-  resolve: { extensions: [".json", ".js", ".ts", ".tsx"] },
+  resolve: {
+    plugins: [
+      new TsConfigPathsPlugin({
+        configFile: join(__dirname, "../../tsconfig.json")
+      })
+    ],
+    extensions: [".json", ".js", ".ts"]
+  },
   plugins: [new HtmlWebpackPlugin({ title: name })]
 }
 
