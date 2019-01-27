@@ -2,6 +2,8 @@ module Main exposing (Model, Msg(..), init, main, subscriptions, timeToString, u
 
 import Browser
 import Html exposing (..)
+import Html.Attributes exposing (attribute)
+import Json.Encode exposing (encode, object, string)
 import Task
 import Time
 
@@ -83,6 +85,9 @@ view model =
 
         second =
             timeToString (Time.toSecond model.zone model.time)
+
+        props =
+            object [ ( "size", string "2em" ) ]
     in
     case Time.posixToMillis model.time of
         0 ->
@@ -91,7 +96,7 @@ view model =
         time ->
             div []
                 [ Html.node "x-button"
-                    []
+                    [ attribute "data-props" (encode 0 props) ]
                     [ Html.text (hour ++ ":" ++ minute ++ ":" ++ second)
                     ]
                 ]
