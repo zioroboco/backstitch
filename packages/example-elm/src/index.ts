@@ -17,7 +17,7 @@ const CustomButton = (props: {
     props.children
   )
 
-backstitch.use([{ component: CustomButton, as: "x-button" }])
+backstitch.define("x-button", CustomButton)
 
 const { Elm } = require("./App.elm")
 

@@ -14,7 +14,7 @@ const CustomButton = (props: { children: React.ReactNode; size: string }) =>
     props.children
   )
 
-backstitch.use([{ component: CustomButton, as: "x-button" }])
+backstitch.define("x-button", CustomButton)
 
 ReactDom.render(
   React.createElement(
