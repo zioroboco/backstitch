@@ -1,5 +1,4 @@
-import { makeBridgeComponent } from "./bridge-component"
-import { makeCustomElement, PROPS_ATTRIBUTE } from "./custom-element"
+import { asCustomElement, PROPS_ATTRIBUTE } from "./custom-element"
 
 export const props = (props: object) => ({
   [PROPS_ATTRIBUTE]: JSON.stringify(props)
@@ -12,8 +11,5 @@ export const use = (
   }[]
 ) =>
   entries.forEach(({ component, as: elementName }) => {
-    customElements.define(
-      elementName,
-      makeCustomElement(makeBridgeComponent(component))
-    )
+    customElements.define(elementName, asCustomElement(component))
   })
