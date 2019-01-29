@@ -21,15 +21,6 @@ The `backstitch.define` function mimics the native `customElements.define` API:
 backstitch.define("custom-element", ReactComponent)
 ```
 
-... but also accepts lists of initialisation objects:
-
-```ts
-backstitch.define([
-  { elementName: "element-one", component: ComponentOne },
-  { elementName: "element-two", component: ComponentTwo }
-])
-```
-
 ### `backstitch.props`
 
 `backstitch.props` serialises plain-old-javascript props to a JSON string under the correct `data-props` object key, so that they can be directly passed to a backstitch custom element.
