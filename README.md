@@ -95,13 +95,12 @@ view model =
                   , ( "blink" , bool model.isGoodOldDays )
                   ]
     in
-    [ Html.node "backstitch-button"
-        [ attribute "data-props" props
-        , onClick ZapKapow
-        ]
-        [ Html.text "Click Me!"
-        ]
-    ]
+    Html.node "backstitch-button"
+      [ attribute "data-props" props
+      , onClick ZapKapow
+      ]
+      [ Html.text "Click Me!"
+      ]
 ```
 
 ## How it works (WIP)
