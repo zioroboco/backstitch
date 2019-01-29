@@ -6,7 +6,7 @@
   "scripts": {
     "elm": "elm=$PWD/node_modules/elm/bin/elm && cd packages/example-elm && $elm",
     "start": "yarn example start",
-    "start-elm": "yarn example start",
+    "start-elm": "yarn example-elm start",
     "build": "yarn backstitch build",
     "postinstall": "yarn backstitch build",
     "backstitch": "yarn workspace backstitch",
