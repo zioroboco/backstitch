@@ -1,6 +1,8 @@
 # backstitch! 🧵
 
-Wraps your React UI elements in a Web Components custom elements API, letting you use them in places where it's otherwise tricky to embed React. (e.g. in Elm!)
+_To sew with overlapping stitches, to bind two pieces of fabric together._
+
+`backstitch` allows you to wrap your [React](https://reactjs.org/) UI elements in a [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) custom elements API, and use them in places where it's otherwise tricky to embed React — e.g. in [Elm](https://elm-lang.org/)!
 
 - [API](#api)
   - [`backstitch.define`](#backstitchdefine)
@@ -18,43 +20,40 @@ Wraps your React UI elements in a Web Components custom elements API, letting yo
 The `backstitch.define` function mimics the native `customElements.define` API:
 
 ```ts
-backstitch.define("custom-element", ReactComponent)
+backstitch.define("x-element", ReactComponent)
 ```
 
 ### `backstitch.props`
 
-`backstitch.props` serialises plain-old-javascript props to a JSON string under the correct `data-props` object key, so that they can be directly passed to a backstitch custom element.
+`backstitch.props` serialises plain-old-javascript props to a JSON string under the correct `data-props` object key, so that they can be directly passed to a `backstitch` custom element.
 
 With the right cocktail of polyfills, this can be used to check custom elements against their original tests, e.g.:
 
 ```tsx
 const container = render(
-  React.createElement(
-    "backstitch-element",
-    backstitch.props(plainOldJavascriptProps)
-  )
+  React.createElement("x-element", backstitch.props(plainOldJavascriptProps))
 )
 ```
 
 ### `backstitch.PROPS_ATTRIBUTE`
 
-The name of the props data-\* attribute (i.e. `"data-props"`).
+The name of the props `data-*` attribute (i.e. `"data-props"`).
 
 ## React example
 
 ```tsx
 import * as backstitch from "backstitch"
-import Button from "./components/Button"
+import ReactButton from "./components/Button"
 
-backstitch.define("backstitch-button", Button)
+backstitch.define("x-button", ReactButton)
 
 const ContrivedExample = props => (
-  <backstitch-button
-    data-props=`{"size": "huge", "blink": ${props.isGoodOldDays}}`
+  <x-button
+    data-props=`{"size": "huge", "blink": ${props.isObnoxious}}`
     onClick={() => window.alert("Zap! Kapow!")}
   >
     Click Me!
-  </backstitch-button>
+  </x-button>
 )
 ```
 
@@ -62,9 +61,9 @@ const ContrivedExample = props => (
 
 ```tsx
 import * as backstitch from "backstitch"
-import Button from "./components/Button"
+import ReactButton from "./components/Button"
 
-backstitch.define("backstitch-button", Button)
+backstitch.define("x-button", ReactButton)
 
 const { Elm } = require("./App.elm")
 
@@ -83,10 +82,10 @@ view model =
             encode 0 <|
               object
                   [ ( "size", string "huge" )
-                  , ( "blink" , bool model.isGoodOldDays )
+                  , ( "blink" , bool model.isObnoxious )
                   ]
     in
-    Html.node "backstitch-button"
+    Html.node "x-button"
       [ attribute "data-props" props
       , onClick ZapKapow
       ]
