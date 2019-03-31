@@ -1,0 +1,12 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: ~/backstitch
+    docker:
+      - image: circleci/node:10.14
+    steps:
+      - checkout
+      - run:
+          name: Install
+          command: yarn install --frozen-lockfile
