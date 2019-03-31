@@ -4,9 +4,13 @@
   "repository": "https://github.com/zioroboco/backstitch.git",
   "author": "Louis Quinnell <zioroboco@gmail.com>",
   "license": "ISC",
-  "private": true,
+  "files": [
+    "/dist"
+  ],
   "main": "./dist",
   "scripts": {
+    "prepublish": "yarn build && cp ../../README.md README.md",
+    "postpublish": "rm README.md",
     "compile": "tsc --noEmit",
     "build": "tsc"
   },
