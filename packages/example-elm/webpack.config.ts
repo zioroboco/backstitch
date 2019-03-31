@@ -1,5 +1,5 @@
 import { Configuration } from "webpack"
-import { makeConfig } from "backstitch-example/webpack.config"
+import { makeConfig } from "example/webpack.config"
 
 const { name } = require("./package.json")
 
