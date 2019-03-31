@@ -1,4 +1,4 @@
-# backstitch! 🧵
+# backstitch! 🧵 [![CircleCI](https://circleci.com/gh/zioroboco/backstitch/tree/master.svg?style=svg)](https://circleci.com/gh/zioroboco/backstitch/tree/master)
 
 _To sew with overlapping stitches, to bind two pieces of fabric together._
 
