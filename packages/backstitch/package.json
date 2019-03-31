@@ -12,6 +12,8 @@
     "prepublish": "yarn build && cp ../../README.md README.md",
     "postpublish": "rm README.md",
     "compile": "tsc --noEmit",
+    "clean": "rm -rf ./dist",
+    "prebuild": "yarn clean",
     "build": "tsc"
   },
   "dependencies": {},
