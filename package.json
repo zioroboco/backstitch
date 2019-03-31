@@ -5,7 +5,7 @@
   ],
   "scripts": {
     "elm": "elm=$PWD/node_modules/elm/bin/elm && cd packages/example-elm && $elm",
-    "compile": "tsc --noEmit"
+    "compile": "lerna run compile"
   },
   "devDependencies": {
     "lerna": "^3.13.1",
