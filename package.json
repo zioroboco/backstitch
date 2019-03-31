@@ -5,7 +5,6 @@
   ],
   "scripts": {
     "elm": "elm=$PWD/node_modules/elm/bin/elm && cd packages/example-elm && $elm",
-    "postinstall": "yarn workspace backstitch build",
     "compile": "tsc --noEmit"
   },
   "devDependencies": {
