@@ -1,4 +1,4 @@
-# backstitch! 🧵 [![CircleCI](https://circleci.com/gh/zioroboco/backstitch/tree/master.svg?style=svg)](https://circleci.com/gh/zioroboco/backstitch/tree/master)
+# backstitch! 🧵 [![CircleCI](https://img.shields.io/circleci/project/github/zioroboco/backstitch/master.svg)](https://circleci.com/gh/zioroboco/backstitch/tree/master) [![npm latest version](https://img.shields.io/npm/v/backstitch/latest.svg)](https://www.npmjs.com/package/backstitch)
 
 _To sew with overlapping stitches, to bind two pieces of fabric together._
 
